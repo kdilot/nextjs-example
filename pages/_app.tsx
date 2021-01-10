@@ -2,6 +2,7 @@ import '../styles/globals.css';
 
 import type { AppProps /*, AppContext */ } from 'next/app';
 import Head from 'next/head';
+import Wrapper from 'components/wrapper';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
@@ -10,7 +11,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                 <title>Create Next App</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Component {...pageProps} />
+            <Wrapper>
+                <Component {...pageProps} />
+            </Wrapper>
         </>
     );
 };

@@ -5,31 +5,26 @@ import { useRouter } from 'next/router';
 export default function Home() {
     const router = useRouter();
     return (
-        <Container>
+        <>
             <Header>
                 <h1>
                     Welcome to <a href="https://nextjs.org">Next.js!</a>
                 </h1>
             </Header>
-
-            <Contents>
-                <Link href={'/board'}>
-                    <a>BOARD</a>
-                </Link>
-                <Link href={'/board'}>
-                    <a target="_blank">BOARD Target Blank</a>
-                </Link>
-                <a onClick={() => router.push('/board')}>BOARD Onclick</a>
-            </Contents>
-        </Container>
+            <div style={{ height: '500px' }}></div>
+            <Link href={'/board'}>
+                <a>BOARD</a>
+            </Link>
+            <Link href={'/board'}>
+                <a target="_blank">BOARD Target Blank</a>
+            </Link>
+            <a onClick={() => router.push('/board')}>BOARD Onclick</a>
+        </>
     );
 }
 
-const Container = styled.div``;
-
 const Header = styled.div`
-    padding: 5rem 0;
-    flex: 1;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,15 +35,5 @@ const Header = styled.div`
     a {
         color: #0070f3;
         text-decoration: none;
-    }
-`;
-
-const Contents = styled.article`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    a ~ a {
-        margin-top: 10px;
     }
 `;
