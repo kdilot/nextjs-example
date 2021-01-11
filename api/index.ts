@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const ApiTest = async () => {
+export const ApiDummyPost = async () => {
     const rs = await axios
-        .get(`/api/hello`)
+        .get(`https://jsonplaceholder.typicode.com/posts`)
         .then((res: any) => {
             return res.data;
         })
@@ -12,20 +12,14 @@ export const ApiTest = async () => {
     return rs;
 };
 
-export const ApiGoods = async () => {
+export const ApiDummyPhoto = async () => {
     const rs = await axios
-        .get(`${process.env.api}`, {
-            params: {
-                limit: 10,
-                offset: 0,
-            },
-        })
-        .then((res) => {
-            return res.data.data.rows;
+        .get(`https://jsonplaceholder.typicode.com/photos?_limit=20`)
+        .then((res: any) => {
+            return res.data;
         })
         .catch(() => {
             return [];
         });
-
     return rs;
 };
