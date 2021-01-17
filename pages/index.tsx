@@ -28,6 +28,8 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     width: 100%;
+    height: auto;
+    margin-bottom: 100%;
     a {
         font-size: 1.3rem;
         margin-top: 10px;

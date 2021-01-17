@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import Header from 'components/header';
 import { useScroll } from 'hooks/common';
-import { useEffect } from 'react';
 
 const Wrapper: React.FC = ({ children }) => {
+    useScroll();
     return (
         <Container>
             <Header />
@@ -17,8 +17,7 @@ export default Wrapper;
 const Container = styled.section`
     @media screen and (min-width: 414px) {
         width: 500px;
-        height: 100vh;
-        overflow: auto;
+        height: auto;
         border-left: 1px solid rgba(0, 0, 0, 0.1);
         border-right: 1px solid rgba(0, 0, 0, 0.1);
         padding-bottom: 10px;

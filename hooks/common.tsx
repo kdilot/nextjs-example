@@ -38,12 +38,13 @@ export const useScroll = () => {
     };
 
     useEffect(() => {
+        console.log('@@@');
         window.addEventListener('scroll', onScroll, false);
 
         return () => {
             window.removeEventListener('scroll', onScroll, false);
         };
-    });
+    }, []);
 
     return {
         scrollTop,

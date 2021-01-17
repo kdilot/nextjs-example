@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { ApiDummyPost } from 'api';
 import Wrapper from 'components/wrapper';
 import styled from 'styled-components';
+import { useScroll } from 'hooks/common';
 
 const Photo: React.FC = () => {
+    useScroll();
     const [list, setList] = useState<any[]>([]);
     const onReadDummy = async () => {
         const rs = await ApiDummyPost();
