@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import Header from 'components/header';
-import { useScroll } from 'hooks/common';
 
 const Wrapper: React.FC = ({ children }) => {
-    useScroll();
     return (
         <Container>
             <Header />
@@ -17,10 +15,9 @@ export default Wrapper;
 const Container = styled.section`
     @media screen and (min-width: 414px) {
         width: 500px;
-        height: auto;
+        height: 100vh;
         border-left: 1px solid rgba(0, 0, 0, 0.1);
         border-right: 1px solid rgba(0, 0, 0, 0.1);
-        padding-bottom: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -39,7 +36,6 @@ const Container = styled.section`
         width: 100vw;
         height: 100vh;
         overflow: auto;
-        padding-bottom: 10px;
     }
 `;
 
@@ -48,4 +44,5 @@ const ChildContainer = styled.div`
     flex-direction: column;
     width: 100%;
     padding: 0 10px;
+    overflow: hidden;
 `;

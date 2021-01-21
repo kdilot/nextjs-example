@@ -1,44 +1,36 @@
 import { useEffect, useMemo, useState } from 'react';
+import { throttle } from 'lodash';
 
 export const useScroll = () => {
-    const [scrollTop, setScrollTop] = useState<number>(0);
-    const [scrollBottom, setScrollBottom] = useState<number>(0);
+    const [currentScrollPosition, setCurrentScrollPosition] = useState<number>(
+        0,
+    );
     const [scrollHeight, setScrollHeight] = useState<number>(0);
     const [innerHeight, setInnerHeight] = useState<number>(0);
-    const [prevScroll, setPrevScroll] = useState<number>(0);
-    const [isBottom, setIsBottom] = useState<boolean>(false);
-    const isScrollEnd = useMemo(
+    const [prevScrollPosition, setPrevScrollPosition] = useState<number>(0);
+    const maxScrollHeight = useMemo(
+        () => scrollHeight !== 0 && scrollHeight - innerHeight,
+        [scrollHeight, innerHeight],
+    );
+    const isScrollEndPosition = useMemo(
         () =>
-            scrollHeight !== 0 && scrollHeight - innerHeight - scrollTop < 400,
-        [scrollHeight, innerHeight, scrollTop],
+            scrollHeight !== 0 &&
+            scrollHeight - innerHeight - currentScrollPosition < 1000,
+        [scrollHeight, innerHeight, currentScrollPosition],
     );
 
-    const onScroll = () => {
-        console.log('!!!!');
+    const onScroll = throttle(() => {
         setInnerHeight(window.innerHeight);
         setScrollHeight(document.body.scrollHeight);
-        setPrevScroll(scrollTop);
+        setPrevScrollPosition(currentScrollPosition);
         const top =
             window.scrollY ||
             (document.documentElement && document.documentElement.scrollTop) ||
             document.body.scrollTop;
-        setScrollTop(top);
-
-        const docHeight = Math.max(
-            document.body.scrollHeight,
-            document.body.offsetHeight,
-            document.documentElement.clientHeight,
-            document.documentElement.scrollHeight,
-            document.documentElement.offsetHeight,
-        );
-        const bottom = window.innerHeight + window.pageYOffset;
-
-        setScrollBottom(bottom);
-        setIsBottom(bottom >= docHeight ? true : false);
-    };
+        setCurrentScrollPosition(top);
+    }, 500);
 
     useEffect(() => {
-        console.log('@@@');
         window.addEventListener('scroll', onScroll, false);
 
         return () => {
@@ -46,13 +38,18 @@ export const useScroll = () => {
         };
     }, []);
 
+    // useEffect(() => {
+    //     console.log(
+    //         currentScrollPosition,
+    //         maxScrollHeight,
+    //         isScrollEndPosition,
+    //     );
+    // }, [currentScrollPosition]);
+
     return {
-        scrollTop,
-        scrollBottom,
-        scrollHeight,
-        innerHeight,
-        prevScroll,
-        isScrollEnd,
-        isBottom,
+        currentScrollPosition,
+        prevScrollPosition,
+        maxScrollHeight,
+        isScrollEndPosition,
     };
 };

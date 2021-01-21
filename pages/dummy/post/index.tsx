@@ -3,22 +3,44 @@ import { ApiDummyPost } from 'api';
 import Wrapper from 'components/wrapper';
 import styled from 'styled-components';
 import { useScroll } from 'hooks/common';
+import { debounce } from 'lodash';
 
 const Photo: React.FC = () => {
-    useScroll();
+    const {
+        currentScrollPosition,
+        maxScrollHeight,
+        isScrollEndPosition,
+    } = useScroll();
     const [list, setList] = useState<any[]>([]);
-    const onReadDummy = async () => {
+
+    const onReadDummy = debounce(async () => {
         const rs = await ApiDummyPost();
-        setList(rs);
-    };
+        console.log('CALLED', [...list, ...rs].length);
+        setList([...list, ...rs]);
+    }, 1000);
 
     useEffect(() => {
         onReadDummy();
     }, []);
 
+    useEffect(() => {
+        if (isScrollEndPosition) {
+            onReadDummy();
+        }
+    }, [isScrollEndPosition]);
+
+    useEffect(() => {
+        console.log(
+            currentScrollPosition,
+            maxScrollHeight,
+            isScrollEndPosition,
+        );
+    }, [currentScrollPosition]);
+
     return (
         <Wrapper>
             <Container>
+                {list.length === 0 && <div>Loading...</div>}
                 {list.map((dum: any, index: number) => (
                     <CardLayout key={index}>
                         <p>{dum.title}</p>
@@ -33,9 +55,14 @@ const Photo: React.FC = () => {
 export default Photo;
 
 const Container = styled.article`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
-    height: 100%;
-    margin-top: 10px;
+    height: 100vh;
+    background: yellow;
+    overflow: auto;
 
     div ~ div {
         margin-top: 10px;
