@@ -14,35 +14,36 @@ export default Wrapper;
 
 const Container = styled.section`
     @media screen and (min-width: 414px) {
-        width: 500px;
-        height: 100vh;
         border-left: 1px solid rgba(0, 0, 0, 0.1);
         border-right: 1px solid rgba(0, 0, 0, 0.1);
         display: flex;
         flex-direction: column;
         align-items: center;
-        &::-webkit-scrollbar {
-            display: none;
-        }
+
+        width: 450px;
+        min-height: 100vh;
+        position: relative;
+
         -moz-box-shadow: 3px 0 3px -3px rgba(0, 0, 0, 0.1),
             -3px 0 3px -3px rgba(0, 0, 0, 0.1);
         -webkit-box-shadow: 3px 0 3px -3px rgba(0, 0, 0, 0.1),
             -3px 0 3px -3px rgba(0, 0, 0, 0.1);
         box-shadow: 3px 0 3px -3px rgba(0, 0, 0, 0.1),
             -3px 0 3px -3px rgba(0, 0, 0, 0.1);
+        overflow: auto;
     }
 
     @media screen and (max-width: 414px) {
         width: 100vw;
         height: 100vh;
-        overflow: auto;
     }
 `;
 
 const ChildContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    padding: 0 10px;
-    overflow: hidden;
+    height: auto;
+    margin-top: 50px;
 `;

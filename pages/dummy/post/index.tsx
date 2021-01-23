@@ -5,11 +5,12 @@ import styled from 'styled-components';
 import { useScroll } from 'hooks/common';
 import { debounce } from 'lodash';
 
-const Photo: React.FC = () => {
+const Post: React.FC = () => {
     const {
         currentScrollPosition,
         maxScrollHeight,
         isScrollEndPosition,
+        onScroll,
     } = useScroll();
     const [list, setList] = useState<any[]>([]);
 
@@ -37,10 +38,18 @@ const Photo: React.FC = () => {
         );
     }, [currentScrollPosition]);
 
+    useEffect(() => {
+        window.addEventListener('scroll', onScroll, false);
+
+        return () => {
+            window.removeEventListener('scroll', onScroll, false);
+        };
+    }, []);
+
     return (
         <Wrapper>
             <Container>
-                {list.length === 0 && <div>Loading...</div>}
+                {list.length === 0 && <EmptyLayout>Loading...</EmptyLayout>}
                 {list.map((dum: any, index: number) => (
                     <CardLayout key={index}>
                         <p>{dum.title}</p>
@@ -52,21 +61,29 @@ const Photo: React.FC = () => {
     );
 };
 
-export default Photo;
+export default Post;
 
 const Container = styled.article`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 0 10px;
     width: 100%;
-    height: 100vh;
-    background: yellow;
+    height: 100%;
     overflow: auto;
 
     div ~ div {
         margin-top: 10px;
     }
+`;
+
+const EmptyLayout = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 50px);
 `;
 
 const CardLayout = styled.div`

@@ -30,14 +30,6 @@ export const useScroll = () => {
         setCurrentScrollPosition(top);
     }, 500);
 
-    useEffect(() => {
-        window.addEventListener('scroll', onScroll, false);
-
-        return () => {
-            window.removeEventListener('scroll', onScroll, false);
-        };
-    }, []);
-
     // useEffect(() => {
     //     console.log(
     //         currentScrollPosition,
@@ -51,5 +43,6 @@ export const useScroll = () => {
         prevScrollPosition,
         maxScrollHeight,
         isScrollEndPosition,
+        onScroll,
     };
 };
