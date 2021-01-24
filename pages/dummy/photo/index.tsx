@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { ApiDummyPhoto } from 'api';
-import Wrapper from 'components/wrapper';
+import Wrapper from '@components/wrapper';
 import styled from 'styled-components';
+import { ApiDummyPhoto } from '@src/api';
 
 const Dummy: React.FC = () => {
     const [list, setList] = useState<any[]>([]);

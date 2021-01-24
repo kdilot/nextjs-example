@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ApiDummyPost } from 'api';
-import Wrapper from 'components/wrapper';
+import Wrapper from '@components/wrapper';
 import styled from 'styled-components';
-import { useScroll } from 'hooks/common';
+import { useScroll } from '@hooks/common';
 import { debounce } from 'lodash';
+import { ApiDummyPost } from '@src/api';
 
 const Post: React.FC = () => {
     const {

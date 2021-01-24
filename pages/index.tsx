@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
-import Wrapper from 'components/wrapper';
+import Wrapper from '@components/wrapper';
 
 export default function Home() {
     return (
@@ -16,6 +16,9 @@ export default function Home() {
                 </Link>
                 <Link href={'/dummy/photo'}>
                     <a>Dummy PHOTO</a>
+                </Link>
+                <Link href={'/dummy/counter'}>
+                    <a>Redux Counter</a>
                 </Link>
             </Container>
         </Wrapper>
