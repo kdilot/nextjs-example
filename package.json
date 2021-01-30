@@ -8,6 +8,7 @@
         "start": "next start -p 3011"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^1.5.0",
         "axios": "^0.21.1",
         "immer": "^8.0.1",
         "lodash": "^4.17.20",

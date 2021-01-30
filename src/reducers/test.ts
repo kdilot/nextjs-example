@@ -1,5 +1,6 @@
 import { createAction, ActionType, createReducer } from 'typesafe-actions';
 import produce from 'immer';
+import { HYDRATE } from 'next-redux-wrapper';
 
 //  Actions Type
 export const TEST = 'test/TEST';

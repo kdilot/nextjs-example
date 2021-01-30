@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
-import Wrapper from '@components/wrapper';
-import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { testMinusAction, testPlusAction } from '@src/reducers/test';
+import { useEffect, useState } from 'react'
+import Wrapper from '@components/wrapper'
+import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
+import { testMinusAction, testPlusAction } from '@src/reducers/test'
+import { RootState } from '@src/reducers'
 
 const Dummy: React.FC = () => {
-    const dispatch = useDispatch();
-    const { count } = useSelector((state: any) => state.test);
+    const dispatch = useDispatch()
+    const { count } = useSelector((state: RootState) => state.test)
 
     const onPlus = () => {
-        dispatch(testPlusAction());
-    };
+        dispatch(testPlusAction())
+    }
 
     const onMinus = () => {
-        dispatch(testMinusAction());
-    };
+        dispatch(testMinusAction())
+    }
 
     useEffect(() => {
-        console.log('REDUX STATE ', count);
-    }, [count]);
+        console.log('REDUX STATE ', count)
+    }, [count])
 
     return (
         <Wrapper>
@@ -37,10 +38,10 @@ const Dummy: React.FC = () => {
                 </div>
             </Container>
         </Wrapper>
-    );
-};
+    )
+}
 
-export default Dummy;
+export default Dummy
 
 const Container = styled.article`
     width: 100%;
@@ -60,4 +61,4 @@ const Container = styled.article`
         padding: 5px;
         cursor: pointer;
     }
-`;
+`

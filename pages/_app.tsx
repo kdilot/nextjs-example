@@ -4,7 +4,7 @@ import type { AppProps /*, AppContext */ } from 'next/app';
 import Head from 'next/head';
 import wrapper from 'src/store';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <>
             <Head>
