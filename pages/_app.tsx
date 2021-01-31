@@ -1,8 +1,8 @@
-import '../styles/globals.css';
+import '../styles/globals.css'
 
-import type { AppProps /*, AppContext */ } from 'next/app';
-import Head from 'next/head';
-import wrapper from 'src/store';
+import type { AppProps /*, AppContext */ } from 'next/app'
+import Head from 'next/head'
+import wrapper from '@store/index'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     return (
@@ -13,7 +13,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
             </Head>
             <Component {...pageProps} />
         </>
-    );
-};
+    )
+}
 
-export default wrapper.withRedux(MyApp);
+export default wrapper.withRedux(MyApp)

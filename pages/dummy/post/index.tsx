@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import Wrapper from '@components/wrapper';
-import styled from 'styled-components';
-import { useScroll } from '@hooks/common';
-import { debounce } from 'lodash';
-import { ApiDummyPost } from '@src/api';
+import { useEffect, useState } from 'react'
+import Wrapper from '@components/wrapper'
+import styled from 'styled-components'
+import { useScroll } from '@hooks/common'
+import { debounce } from 'lodash'
+import { ApiDummyPost } from '@src/api'
 
 const Post: React.FC = () => {
     const {
@@ -11,40 +11,31 @@ const Post: React.FC = () => {
         maxScrollHeight,
         isScrollEndPosition,
         onScroll,
-    } = useScroll();
-    const [list, setList] = useState<any[]>([]);
+    } = useScroll()
+    const [list, setList] = useState<any[]>([])
 
     const onReadDummy = debounce(async () => {
-        const rs = await ApiDummyPost();
-        console.log('CALLED', [...list, ...rs].length);
-        setList([...list, ...rs]);
-    }, 1000);
+        const rs = await ApiDummyPost()
+        setList([...list, ...rs])
+    }, 1000)
 
     useEffect(() => {
-        onReadDummy();
-    }, []);
+        onReadDummy()
+    }, [])
 
     useEffect(() => {
         if (isScrollEndPosition) {
-            onReadDummy();
+            onReadDummy()
         }
-    }, [isScrollEndPosition]);
+    }, [isScrollEndPosition])
 
     useEffect(() => {
-        console.log(
-            currentScrollPosition,
-            maxScrollHeight,
-            isScrollEndPosition,
-        );
-    }, [currentScrollPosition]);
-
-    useEffect(() => {
-        window.addEventListener('scroll', onScroll, false);
+        window.addEventListener('scroll', onScroll, false)
 
         return () => {
-            window.removeEventListener('scroll', onScroll, false);
-        };
-    }, []);
+            window.removeEventListener('scroll', onScroll, false)
+        }
+    }, [])
 
     return (
         <Wrapper>
@@ -58,10 +49,10 @@ const Post: React.FC = () => {
                 ))}
             </Container>
         </Wrapper>
-    );
-};
+    )
+}
 
-export default Post;
+export default Post
 
 const Container = styled.article`
     display: flex;
@@ -76,7 +67,7 @@ const Container = styled.article`
     div ~ div {
         margin-top: 10px;
     }
-`;
+`
 
 const EmptyLayout = styled.div`
     display: flex;
@@ -84,7 +75,7 @@ const EmptyLayout = styled.div`
     align-items: center;
     width: 100%;
     height: calc(100vh - 50px);
-`;
+`
 
 const CardLayout = styled.div`
     width: 100%;
@@ -101,4 +92,4 @@ const CardLayout = styled.div`
     span {
         font-size: 0.8rem;
     }
-`;
+`

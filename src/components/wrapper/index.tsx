@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Header from '@components/header';
+import styled from 'styled-components'
+import Header from '@components/header'
 
 const Wrapper: React.FC = ({ children }) => {
     return (
@@ -7,10 +7,10 @@ const Wrapper: React.FC = ({ children }) => {
             <Header />
             <ChildContainer>{children}</ChildContainer>
         </Container>
-    );
-};
+    )
+}
 
-export default Wrapper;
+export default Wrapper
 
 const Container = styled.section`
     @media screen and (min-width: 414px) {
@@ -37,7 +37,7 @@ const Container = styled.section`
         width: 100vw;
         height: 100vh;
     }
-`;
+`
 
 const ChildContainer = styled.div`
     display: flex;
@@ -46,4 +46,4 @@ const ChildContainer = styled.div`
     width: 100%;
     height: auto;
     margin-top: 50px;
-`;
+`

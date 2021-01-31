@@ -2,6 +2,15 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import combinedReducer from 'src/reducers'
 import { createWrapper, HYDRATE } from 'next-redux-wrapper'
+import createSagaMiddleware from 'redux-saga'
+import { rootSaga } from '@sagas/index'
+
+const bindMiddleware = (middleware: any) => {
+    if (process.env.NODE_ENV !== 'production') {
+        return composeWithDevTools(applyMiddleware(...middleware))
+    }
+    return applyMiddleware(...middleware)
+}
 
 const reducers = (state: any, action: any) => {
     if (action.type === HYDRATE) {
@@ -16,7 +25,9 @@ const reducers = (state: any, action: any) => {
 }
 
 const configureStore: any = () => {
-    const store = createStore(reducers, composeWithDevTools(applyMiddleware()))
+    const sagaMiddleware = createSagaMiddleware()
+    const store: any = createStore(reducers, bindMiddleware([sagaMiddleware]))
+    store.sagaTask = sagaMiddleware.run(rootSaga)
     return store
 }
 

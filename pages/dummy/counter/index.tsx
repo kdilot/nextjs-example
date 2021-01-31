@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react'
 import Wrapper from '@components/wrapper'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { testMinusAction, testPlusAction } from '@src/reducers/test'
-import { RootState } from '@src/reducers'
+import { test, testMinusAction, testPlusAction } from '@reducers/test'
+import { RootState } from '@reducers/index'
 
 const Dummy: React.FC = () => {
     const dispatch = useDispatch()
-    const { count } = useSelector((state: RootState) => state.test)
+    const { count, text, sagaCount } = useSelector(
+        (state: RootState) => state.test,
+    )
 
     const onPlus = () => {
+        dispatch(test())
         dispatch(testPlusAction())
     }
 
@@ -17,14 +19,14 @@ const Dummy: React.FC = () => {
         dispatch(testMinusAction())
     }
 
-    useEffect(() => {
-        console.log('REDUX STATE ', count)
-    }, [count])
-
     return (
         <Wrapper>
             <Container>
                 <h1>COUNTER</h1>
+                <h5>
+                    {text}
+                    {sagaCount}
+                </h5>
                 <h2>{count}</h2>
                 <div
                     style={{

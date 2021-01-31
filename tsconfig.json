@@ -21,6 +21,7 @@
             "@pages/*": ["pages/*"],
             "@api/*": ["src/api/*"],
             "@store/*": ["src/store/*"],
+            "@sagas/*": ["src/sagas/*"],
             "@reducers/*": ["src/reducers/*"],
             "@components/*": ["src/components/*"],
             "@hooks/*": ["src/hooks/*"]
