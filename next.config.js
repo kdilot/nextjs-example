@@ -1,11 +1,11 @@
 module.exports = {
     async redirects() {
         return [
-            {
-                source: '/naver',
-                destination: 'https://www.naver.com/',
-                permanent: false,
-            },
-        ];
+            // {
+            //     source: '/',
+            //     destination: '/post',
+            //     permanent: false,
+            // },
+        ]
     },
-};
+}
