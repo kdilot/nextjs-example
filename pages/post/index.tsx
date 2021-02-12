@@ -1,27 +1,29 @@
 import { useEffect, useState } from 'react'
-import Wrapper from '@components/wrapper'
+import { Wrapper } from '@components'
 import styled from 'styled-components'
 import { useScroll } from '@hooks/common'
 import { debounce } from 'lodash'
-import { ApiDummyPost } from '@src/api'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@reducers/index'
+import { post } from '@reducers/post'
 
 const Post: React.FC = () => {
-    const {
-        currentScrollPosition,
-        maxScrollHeight,
-        isScrollEndPosition,
-        onScroll,
-    } = useScroll()
+    const dispatch = useDispatch()
+    const { isScrollEndPosition, onScroll } = useScroll()
+    const { data } = useSelector((state: RootState) => state.post)
     const [list, setList] = useState<any[]>([])
 
     const onReadDummy = debounce(async () => {
-        const rs = await ApiDummyPost()
-        setList([...list, ...rs])
+        dispatch(post())
     }, 1000)
 
     useEffect(() => {
         onReadDummy()
     }, [])
+
+    useEffect(() => {
+        setList([...list, ...data])
+    }, [data])
 
     useEffect(() => {
         if (isScrollEndPosition) {
