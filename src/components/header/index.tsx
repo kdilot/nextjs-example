@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import styled from 'styled-components';
+import Link from 'next/link'
+import styled from 'styled-components'
 
 const Header: React.FC = () => {
     return (
@@ -8,10 +8,10 @@ const Header: React.FC = () => {
                 <a>Next</a>
             </Link>
         </Container>
-    );
-};
+    )
+}
 
-export default Header;
+export default Header
 
 const Container = styled.header`
     @media screen and (min-width: 414px) {
@@ -40,4 +40,4 @@ const Container = styled.header`
         font-weight: 600;
         cursor: pointer;
     }
-`;
+`
