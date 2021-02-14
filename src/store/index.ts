@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import combinedReducer from 'src/reducers'
+import combinedReducer from '@reducers/index'
 import { createWrapper, HYDRATE } from 'next-redux-wrapper'
 import createSagaMiddleware from 'redux-saga'
 import { rootSaga } from '@sagas/index'
